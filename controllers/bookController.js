@@ -12,7 +12,7 @@ const createBook = async (req, res) => {
 };
 
 const getAllBooks = async (req, res) => {
-  const { name, author, price, averageRating, sort, fields } = req.query;
+  const { name, author, numericFilters, sort, fields } = req.query;
   let queryObject = {};
 
   if (name) {
@@ -21,6 +21,28 @@ const getAllBooks = async (req, res) => {
 
   if (author) {
     queryObject.author = { $regex: author, $options: "i" };
+  }
+
+  if (numericFilters) {
+    const operatorMap = {
+      ">": "$gt",
+      ">=": "$gte",
+      "<": "$lt",
+      "<=": "$lte",
+      "=": "$eq",
+    };
+    const regex = /\b(<|>|<=|=|>=)\b/g;
+    let filters = numericFilters.replace(
+      regex,
+      (match) => `-${operatorMap[match]}-`
+    );
+    let options = ["price", "averageRating"];
+    filters = filters.split(",").forEach((item) => {
+      let [title, operator, value] = item.split("-");
+      if (options.includes(title)) {
+        queryObject[title] = { [operator]: Number(value) };
+      }
+    });
   }
 
   let result = Book.find(queryObject).select(

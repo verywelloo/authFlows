@@ -24,6 +24,7 @@ const connectDB = require("./db/connect");
 const bookRoute = require("./routes/bookRoutes");
 const authRoute = require("./routes/authRoutes");
 const reviewRoute = require("./routes/reviewRoutes");
+const userRoute = require("./routes/userRoutes");
 
 const notFoundMiddleware = require("./middleware/not-found");
 const errorHandlerMiddleware = require("./middleware/error-handler");
@@ -61,6 +62,7 @@ app.use(
 app.use("/api/v1/books", bookRoute);
 app.use("/api/v1/auth", authRoute);
 app.use("/api/v1/reviews", reviewRoute);
+app.use("/api/v1/user", userRoute);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
