@@ -10,7 +10,7 @@ tags:
   - name: book
   - name: Review
 paths:
-  /auth/login:
+  /api/v1/auth/login:
     post:
       tags:
         - auth
@@ -28,7 +28,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /auth/verify-email:
+  /api/v1/auth/verify-email:
     post:
       tags:
         - auth
@@ -46,7 +46,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /auth/register:
+  /api/v1/auth/register:
     post:
       tags:
         - auth
@@ -65,7 +65,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /auth/logout:
+  /api/v1/auth/logout:
     get:
       tags:
         - auth
@@ -75,7 +75,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /users:
+  /api/v1/users:
     get:
       tags:
         - user
@@ -85,7 +85,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /users/123:
+  /api/v1/users/123:
     get:
       tags:
         - user
@@ -95,7 +95,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /users/showMe:
+  /api/v1/users/showMe:
     get:
       tags:
         - user
@@ -105,7 +105,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /users/updateUser:
+  /api/v1/users/updateUser:
     patch:
       tags:
         - user
@@ -123,7 +123,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /users/updateUserPassword:
+  /api/v1/users/updateUserPassword:
     patch:
       tags:
         - user
@@ -141,7 +141,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /books:
+  /api/v1/books:
     get:
       tags:
         - book
@@ -177,7 +177,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /books/123:
+  /api/v1/books/123:
     get:
       tags:
         - book
@@ -207,7 +207,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /products/123:
+  /api/v1/products/123:
     delete:
       tags:
         - book
@@ -217,7 +217,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /products/uploadImage:
+  /api/v1/products/uploadImage:
     post:
       tags:
         - book
@@ -236,7 +236,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /products/123/reviews:
+  /api/v1/products/123/reviews:
     get:
       tags:
         - book
@@ -246,7 +246,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /reviews:
+  /api/v1/reviews:
     get:
       tags:
         - Review
@@ -275,7 +275,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /reviews/123:
+  /api/v1/reviews/123:
     get:
       tags:
         - Review
@@ -294,7 +294,7 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /reviews/6731c20fe04d63b3854ba4da:
+  /api/v1/reviews/123:
     patch:
       tags:
         - Review
