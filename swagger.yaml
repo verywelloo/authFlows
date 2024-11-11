@@ -85,11 +85,19 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/v1/users/123:
+  /api/v1/users/{id}:
     get:
       tags:
         - user
       summary: Get Single User
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of the student
+          schema:
+            type: integer
+            example: 123
       responses:
         "200":
           description: Successful response
@@ -177,11 +185,19 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/v1/books/123:
+  /api/v1/books/{id}:
     get:
       tags:
         - book
       summary: Get Single Book
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of the student
+          schema:
+            type: integer
+            example: 123
       responses:
         "200":
           description: Successful response
@@ -202,16 +218,32 @@ paths:
                 description: a big black box
                 featured: "false"
                 price: 123
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of the student
+          schema:
+            type: integer
+            example: 123          
       responses:
         "200":
           description: Successful response
           content:
             application/json: {}
-  /api/v1/products/123:
+  /api/v1/products/{id}:
     delete:
       tags:
         - book
       summary: Delete Book
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of the student
+          schema:
+            type: integer
+            example: 123
       responses:
         "200":
           description: Successful response
@@ -236,11 +268,19 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/v1/products/123/reviews:
+  /api/v1/products/{id}/reviews:
     get:
       tags:
         - book
       summary: Get Single Product Review
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of the student
+          schema:
+            type: integer
+            example: 123
       responses:
         "200":
           description: Successful response
@@ -275,11 +315,19 @@ paths:
           description: Successful response
           content:
             application/json: {}
-  /api/v1/reviews/123:
+  /api/v1/reviews/{id}:
     get:
       tags:
         - Review
       summary: Get Single Review
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of the student
+          schema:
+            type: integer
+            example: 123
       responses:
         "200":
           description: Successful response
@@ -289,12 +337,19 @@ paths:
       tags:
         - Review
       summary: Delete Review
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of the student
+          schema:
+            type: integer
+            example: 123
       responses:
         "200":
           description: Successful response
           content:
             application/json: {}
-  /api/v1/reviews/123:
     patch:
       tags:
         - Review
@@ -309,6 +364,14 @@ paths:
                 rating: "5"
                 title: bad product updated
                 comment: very, very bad product
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of the student
+          schema:
+            type: integer
+            example: 123          
       responses:
         "200":
           description: Successful response
