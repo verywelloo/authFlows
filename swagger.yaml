@@ -3,7 +3,7 @@ info:
   title: book-store
   version: 1.0.0
 servers:
-  - url: http://localhost:5000.com
+  - url: https://authflows.onrender.com
 tags:
   - name: auth
   - name: user
