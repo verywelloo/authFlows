@@ -1,0 +1,316 @@
+openapi: 3.0.0
+info:
+  title: book-store
+  version: 1.0.0
+servers:
+  - url: http://localhost:5000.com
+tags:
+  - name: auth
+  - name: user
+  - name: book
+  - name: Review
+paths:
+  /auth/login:
+    post:
+      tags:
+        - auth
+      summary: Login User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: peter@gmail.com
+                password: secret
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/verify-email:
+    post:
+      tags:
+        - auth
+      summary: Verify Email
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                verificationToken: "123"
+                email: peter@gmail.com
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/register:
+    post:
+      tags:
+        - auth
+      summary: Register User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: peter
+                email: peter@gmail.com
+                password: secret
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /auth/logout:
+    get:
+      tags:
+        - auth
+      summary: Logout User
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /users:
+    get:
+      tags:
+        - user
+      summary: Get All Users
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /users/123:
+    get:
+      tags:
+        - user
+      summary: Get Single User
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /users/showMe:
+    get:
+      tags:
+        - user
+      summary: Show Current User
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /users/updateUser:
+    patch:
+      tags:
+        - user
+      summary: Update User
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: susanUpdated
+                email: susan@gmail.com
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /users/updateUserPassword:
+    patch:
+      tags:
+        - user
+      summary: Update User Password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                oldPassword: newSecret
+                newPassword: secret
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /books:
+    get:
+      tags:
+        - book
+      summary: Get All Books
+      parameters:
+        - name: name
+          in: query
+          schema:
+            type: string
+          example: t
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - book
+      summary: Create Book
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: testing
+                author: testing
+                description: a big black box
+                featured: "false"
+                price: 123
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /books/123:
+    get:
+      tags:
+        - book
+      summary: Get Single Book
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    patch:
+      tags:
+        - book
+      summary: Update Book
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: testingUpdated
+                author: testing
+                description: a big black box
+                featured: "false"
+                price: 123
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /products/123:
+    delete:
+      tags:
+        - book
+      summary: Delete Book
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /products/uploadImage:
+    post:
+      tags:
+        - book
+      summary: Upload Image
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                image:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /products/123/reviews:
+    get:
+      tags:
+        - book
+      summary: Get Single Product Review
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /reviews:
+    get:
+      tags:
+        - Review
+      summary: Get All Review
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+        - Review
+      summary: Create Review
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                book: "123"
+                rating: "1"
+                title: bad product
+                comment: very, very bad product
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /reviews/123:
+    get:
+      tags:
+        - Review
+      summary: Get Single Review
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+        - Review
+      summary: Delete Review
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /reviews/6731c20fe04d63b3854ba4da:
+    patch:
+      tags:
+        - Review
+      summary: Update Review
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                book: "123"
+                rating: "5"
+                title: bad product updated
+                comment: very, very bad product
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
