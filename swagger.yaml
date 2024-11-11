@@ -96,7 +96,7 @@ paths:
           required: true
           description: The ID of the student
           schema:
-            type: integer
+            type: string
             example: 123
       responses:
         "200":
@@ -196,7 +196,7 @@ paths:
           required: true
           description: The ID of the student
           schema:
-            type: integer
+            type: string
             example: 123
       responses:
         "200":
@@ -224,7 +224,7 @@ paths:
           required: true
           description: The ID of the student
           schema:
-            type: integer
+            type: string
             example: 123          
       responses:
         "200":
@@ -242,7 +242,7 @@ paths:
           required: true
           description: The ID of the student
           schema:
-            type: integer
+            type: string
             example: 123
       responses:
         "200":
@@ -279,7 +279,7 @@ paths:
           required: true
           description: The ID of the student
           schema:
-            type: integer
+            type: string
             example: 123
       responses:
         "200":
@@ -326,7 +326,7 @@ paths:
           required: true
           description: The ID of the student
           schema:
-            type: integer
+            type: string
             example: 123
       responses:
         "200":
@@ -343,7 +343,7 @@ paths:
           required: true
           description: The ID of the student
           schema:
-            type: integer
+            type: string
             example: 123
       responses:
         "200":
@@ -370,7 +370,7 @@ paths:
           required: true
           description: The ID of the student
           schema:
-            type: integer
+            type: string
             example: 123          
       responses:
         "200":
