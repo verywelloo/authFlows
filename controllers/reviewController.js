@@ -7,12 +7,12 @@ const { checkPermission } = require("../utils");
 
 const createReview = async (req, res) => {
   const { book: bookId } = req.body;
-  const isValidBook = await Book.findOne({ _id: bookId }); // check for real available product
+  const isValidBook = await Book.findOne({ _id: bookId }); // check for real available book
   if (!isValidBook) {
-    throw new CustomError.NotFoundError(`No product with id : ${bookId}`);
+    throw new CustomError.NotFoundError(`No book with id : ${bookId}`);
   }
 
-  // check for 1 review per product
+  // check for 1 review per book
   const alreadySubmitted = await Review.findOne({
     book: bookId,
     user: req.user.userId,

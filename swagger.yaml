@@ -75,6 +75,42 @@ paths:
           description: Successful response
           content:
             application/json: {}
+  /api/v1/auth/forgot-password:
+    post:
+      tags:
+        - auth
+      summary: Forget Password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                email: john@gmail.com
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1/auth/reset-password:
+    post:
+      tags:
+        - auth
+      summary: Reset Password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                token: "123"
+                email: john@gmail.com
+                password: secret
+      responses:
+        "200":
+          description: Successful response
+          content:
+            application/json: {}
   /api/v1/users:
     get:
       tags:
@@ -94,7 +130,7 @@ paths:
         - in: path
           name: id
           required: true
-          description: The ID of the student
+          description: The ID of the user
           schema:
             type: string
             example: 123
@@ -204,7 +240,7 @@ paths:
         - in: path
           name: id
           required: true
-          description: The ID of the student
+          description: The ID of the book
           schema:
             type: string
             example: 123
@@ -232,7 +268,7 @@ paths:
         - in: path
           name: id
           required: true
-          description: The ID of the student
+          description: The ID of the book
           schema:
             type: string
             example: 123
@@ -249,7 +285,7 @@ paths:
         - in: path
           name: id
           required: true
-          description: The ID of the student
+          description: The ID of the book
           schema:
             type: string
             example: 123
@@ -281,12 +317,12 @@ paths:
     get:
       tags:
         - book
-      summary: Get Single Product Review
+      summary: Get Single Book Review
       parameters:
         - in: path
           name: id
           required: true
-          description: The ID of the student
+          description: The ID of the book
           schema:
             type: string
             example: 123
@@ -317,8 +353,8 @@ paths:
               example:
                 book: "123"
                 rating: "1"
-                title: bad product
-                comment: very, very bad product
+                title: bad book
+                comment: very, very bad book
       responses:
         "200":
           description: Successful response
@@ -333,7 +369,7 @@ paths:
         - in: path
           name: id
           required: true
-          description: The ID of the student
+          description: The ID of the review
           schema:
             type: string
             example: 123
@@ -350,7 +386,7 @@ paths:
         - in: path
           name: id
           required: true
-          description: The ID of the student
+          description: The ID of the review
           schema:
             type: string
             example: 123
@@ -371,13 +407,13 @@ paths:
               example:
                 book: "123"
                 rating: "5"
-                title: bad product updated
-                comment: very, very bad product
+                title: bad book updated
+                comment: very, very bad book
       parameters:
         - in: path
           name: id
           required: true
-          description: The ID of the student
+          description: The ID of the review
           schema:
             type: string
             example: 123

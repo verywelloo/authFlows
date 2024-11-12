@@ -2,9 +2,14 @@ const User = require("../models/User");
 const Token = require("../models/Token");
 const { StatusCodes } = require("http-status-codes");
 const CustomError = require("../errors");
-const { attachCookiesToResponse, createTokenUser } = require("../utils");
+const {
+  attachCookiesToResponse,
+  createTokenUser,
+  sendVerificationEmail,
+  sendResetPasswordEmail,
+  createHash,
+} = require("../utils");
 const crypto = require("crypto");
-const sendVerificationEmail = require("../utils/sendVerificationEmail");
 
 const register = async (req, res) => {
   const { email, name, password } = req.body;
@@ -127,9 +132,66 @@ const verifyEmail = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: "Email Verified" });
 };
 
+const forgotPassword = async (req, res) => {
+  const { email } = req.body;
+  if (!email) {
+    throw new CustomError.BadRequestError("Please provide valid email");
+  }
+
+  const user = await User.findOne({ email });
+  if (user) {
+    const passwordToken = crypto.randomBytes(70).toString("hex");
+    // send email
+    const origin = "http://localhost:3000";
+    await sendResetPasswordEmail({
+      name: user.name,
+      email: user.email,
+      token: passwordToken,
+      origin,
+    });
+    const tenMinutes = 1000 * 60 * 10;
+    const passwordTokenExpirationDate = new Date(Date.now() + tenMinutes);
+
+    user.passwordToken = passwordToken; //createHash(passwordToken)
+    user.passwordTokenExpirationDate = passwordTokenExpirationDate;
+    await user.save();
+  }
+
+  res.status(StatusCodes.OK).json({
+    msg: "Please check your email for reset password link",
+    passwordToken: user.passwordToken,
+  });
+};
+
+const resetPassword = async (req, res) => {
+  const { email, token, password } = req.body;
+
+  const user = await User.findOne({ email });
+  if (user) {
+    const currentDate = new Date();
+
+    if (
+      user.passwordToken === token /*createHash(token)*/ &&
+      user.passwordTokenExpirationDate > currentDate
+    ) {
+      user.password = password;
+      user.passwordToken = null;
+      user.passwordTokenExpirationDate = null;
+      await user.save();
+    } else {
+      throw new CustomError.BadRequestError(
+        "Something went wrong, please try again later"
+      );
+    }
+  }
+  res.send("reset password");
+};
+
 module.exports = {
   register,
   login,
   logout,
   verifyEmail,
+  forgotPassword,
+  resetPassword,
 };

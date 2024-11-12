@@ -15,6 +15,8 @@ const {
   uploadImage,
 } = require("../controllers/bookController");
 
+const { getSingleBookReviews } = require("../controllers/reviewController");
+
 router
   .route("/")
   .get(getAllBooks)
@@ -27,5 +29,7 @@ router
 router
   .route("/uploadImage")
   .post([authenticateUser, authorizePermissions("admin")], uploadImage);
+
+router.route("/:id/reviews").get(getSingleBookReviews);
 
 module.exports = router;
